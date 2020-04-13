@@ -1,22 +1,30 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
+import ReactDOM from "react-dom";
+import OfflineLayout from "./components/OfflineLayout";
+import "./styles.css";
 
-import styles from './styles.css'
-
-export default class ExampleComponent extends Component {
-  static propTypes = {
-    text: PropTypes.string
+const OfflineConfigComponent = ({
+  isOffline = true,
+  root = "root",
+  customLayout,
+  children
+}) => {
+  if (isOffline) {
+    ReactDOM.unmountComponentAtNode(document.getElementById(root));
+    ReactDOM.render(
+      customLayout ? customLayout : <OfflineLayout>{children}</OfflineLayout>,
+      document.getElementById(root)
+    );
   }
+  return null;
+};
 
-  render() {
-    const {
-      text
-    } = this.props
+OfflineConfigComponent.propTypes = {
+  isOffline: PropTypes.bool.isRequired,
+  root: PropTypes.string,
+  customLayout: PropTypes.object,
+  children: PropTypes.any
+};
 
-    return (
-      <div className={styles.test}>
-        Example Component: {text}
-      </div>
-    )
-  }
-}
+export default OfflineConfigComponent;
