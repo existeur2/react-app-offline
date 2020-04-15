@@ -1,6 +1,6 @@
 {
   "name": "react-app-offline",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "This library displays &quot;offline&quot; or &quot;coming soon&quot; windows and disables the react app  ",
   "author": "existeur2",
   "license": "MIT",
